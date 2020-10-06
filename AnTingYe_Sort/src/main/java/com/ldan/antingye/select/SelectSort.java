@@ -1,4 +1,4 @@
-package com.ldan.antingye.bubble;
+package com.ldan.antingye.select;
 
 import com.ldan.antingye.utils.NumberUtils;
 
@@ -8,32 +8,31 @@ import static com.ldan.antingye.constant.SortConstants.RANGE;
 import static com.ldan.antingye.constant.SortConstants.SIZE;
 
 /**
- * 冒泡排序
+ * 选择排序
  */
-public class BubbleSort {
-
+public class SelectSort {
     public static void main(String[] args) {
         int[] array = NumberUtils.getArray(SIZE, RANGE);
         System.out.println(Arrays.toString(sort(array)));
     }
 
     /**
-     * 冒泡排序
-     *
+     * 选择排序
      * @param array 待排序数组
-     * @return 返回值
+     * @return array
      */
     public static int[] sort(int[] array) {
-        // 中间临时变量
-        Integer temp;
-        for (int i = 1; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - 1 - i; j++) {
-                if (array[j] > array[j+1]) {
-                    temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
+        for (int i = 0; i < array.length; i++) {
+            int index = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[index] > array[j]) {
+                    //最小值一直在变化,上面条件不能写成 if (array[i] > array[j]);
+                    index = j;
                 }
             }
+            int temp =array[index];
+                array[index] = array[i];
+                array[i] = temp;
         }
         return array;
     }
